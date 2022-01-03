@@ -7,11 +7,12 @@ type InputFiledProps = {
   label: string
   width?: string
   disabled?: boolean
+  defaultValue: string
 }
 
 type Props = FieldRenderProps<string> & InputFiledProps
 
-export const Input = ({input, placeholder, label, width='150', disabled}: Props) => {
+export const Input = ({input, placeholder, label, width='150', disabled, defaultValue}: Props) => {
   return (
     <Wrapper width={width}>
       {label && <label>{label}</label>}
@@ -19,6 +20,7 @@ export const Input = ({input, placeholder, label, width='150', disabled}: Props)
         {...input}
         disabled={disabled}
         placeholder={placeholder}
+        value={defaultValue}
       />
     </Wrapper>
   )
