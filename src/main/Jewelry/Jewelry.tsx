@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import styled from 'styled-components'
 import {Container, Divider, Block} from '../../ui'
 import {Field, Form} from 'react-final-form'
@@ -7,12 +7,24 @@ import {Button} from '../../components/Button'
 import {Options} from '../../components/Options'
 import {InputValueType} from '../../dto/types'
 import {calculateAcc} from '../../helpers'
+import {useDispatch, useSelector} from 'react-redux'
+import {RootState} from '../../redux/store'
+import {getChance} from '../../redux/calcSlice'
+import {DASH_STRING} from '../../constants'
 
 export const Jewelry = () => {
 
+  const state = useSelector((state: RootState) => state.calc.value)
+  const dispatch = useDispatch()
+
   const onSubmit = (value: InputValueType) => {
-    calculateAcc(value)
+    const chance = calculateAcc(value)
+    dispatch(getChance(chance))
   }
+
+  useEffect(() => {
+    console.log('state: ', state)
+  }, [state])
 
   return (
     <Container>
@@ -51,7 +63,7 @@ export const Jewelry = () => {
                       name="enhanceGrade"
                       component="select"
                     >
-                      <Options options={['-', 'I', 'II', 'III', 'IV', 'V']}/>
+                      <Options options={[DASH_STRING, 'I', 'II', 'III', 'IV', 'V']}/>
                     </Field>
                   </CheckboxWrapper>
                   <Field
