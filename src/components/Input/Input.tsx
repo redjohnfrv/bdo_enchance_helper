@@ -5,14 +5,15 @@ import {FieldRenderProps} from 'react-final-form'
 type InputFiledProps = {
   placeholder?: string
   label: string
+  width?: string
   disabled?: boolean
 }
 
 type Props = FieldRenderProps<string> & InputFiledProps
 
-export const Input = ({input, placeholder, label, disabled}: Props) => {
+export const Input = ({input, placeholder, label, width='150', disabled}: Props) => {
   return (
-    <Wrapper>
+    <Wrapper width={width}>
       {label && <label>{label}</label>}
       <input
         {...input}
@@ -23,16 +24,18 @@ export const Input = ({input, placeholder, label, disabled}: Props) => {
   )
 }
 
-const Wrapper = styled.div`
+const Wrapper = styled.div<{width: string}>`
   display: flex;
   justify-content: flex-start;
   gap: 12px;
-  margin-bottom: 12px;
+  margin: 12px 0;
   
   & label {
     width: 250px;
   }
   
   & input {
+    height: 15px;
+    width: ${props => props.width + `px;`};
   }
 `
