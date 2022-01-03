@@ -1,12 +1,12 @@
 import {createSlice} from '@reduxjs/toolkit'
-import {DASH_STRING} from '../constants'
+import {EMPTY_STRING} from '../constants'
 
 export type ChanceValueType = {
   value: string
 }
 
 const initialState: ChanceValueType = {
-  value: DASH_STRING,
+  value: EMPTY_STRING,
 }
 
 export const calcSlice = createSlice({
