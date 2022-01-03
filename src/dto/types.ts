@@ -1,3 +1,7 @@
 export type InputValueType = {
-  input: string
+  commonItemPrice: string
+  enhanceGrade: string
+  enhancedItemPrice: string
+  startItemPrice: string
+  lucks: string
 }
