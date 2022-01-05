@@ -8,9 +8,6 @@ export const chanceResolver = (gradeObj: GradeObjType, enhanceGrade: string, luc
   const prevStep = gradeObj!.prevCapStep!
   const afterStep = gradeObj!.afterCapStep!
   const capChance = gradeObj!.capChance!
-  // FIXME logs to delete
-  console.log('capChance: ', capChance)
-  console.log('lucks: ', lucksToNum)
 
   if (enhanceGrade === 'V' && lucksToNum * prevStep <= max) {
     return min + (lucksToNum * prevStep)

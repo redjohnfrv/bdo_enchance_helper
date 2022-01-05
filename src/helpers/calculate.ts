@@ -10,14 +10,10 @@ export const calculateAcc = (value: InputValueType) => {
     lucks,
   } = value
 
-  const getAccObj = gradeResolver(enhanceGrade)
-  const getChance = chanceResolver(getAccObj!, enhanceGrade, lucks)!.toFixed(2)
-  const getProfit = profitResolver(commonItemPrice, startItemPrice, enhancedItemPrice, getChance)
+  const accObj = gradeResolver(enhanceGrade)
+  const chance = chanceResolver(accObj!, enhanceGrade, lucks)!.toFixed(2)
+  const profit = profitResolver(commonItemPrice, startItemPrice, enhancedItemPrice, chance)
 
-  // FIXME log to delete
-  console.log(getChance)
-  console.log(getProfit)
-
-  return {getChance, getProfit}
+  return {chance, profit}
 
 }
