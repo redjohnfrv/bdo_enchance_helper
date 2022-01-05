@@ -1,5 +1,5 @@
 import {InputValueType} from '../dto/types'
-import {chanceResolver, gradeResolver} from './'
+import {chanceResolver, gradeResolver, profitResolver} from './'
 
 export const calculateAcc = (value: InputValueType) => {
   const {
@@ -10,12 +10,14 @@ export const calculateAcc = (value: InputValueType) => {
     lucks,
   } = value
 
-  const getAccObj = gradeResolver(enhanceGrade)
-  const getChance = chanceResolver(getAccObj!, enhanceGrade, lucks)!.toFixed(2)
+  const accObj = gradeResolver(enhanceGrade)
+  const chance = chanceResolver(accObj!, enhanceGrade, lucks)!.toFixed(2)
+  const {
+    rawProfit,
+    noPremProfit,
+    premProfit,
+  } = profitResolver(commonItemPrice, startItemPrice, enhancedItemPrice, chance)
 
-  // FIXME log to delete
-  console.log(getChance)
-
-  return getChance
+  return {chance, rawProfit, noPremProfit, premProfit}
 
 }

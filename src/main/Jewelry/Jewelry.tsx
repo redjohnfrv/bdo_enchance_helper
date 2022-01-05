@@ -10,16 +10,16 @@ import {Button} from '../../components/Button'
 import {Options} from '../../components/Options'
 import {calculateAcc} from '../../helpers'
 import {useDispatch, useSelector} from 'react-redux'
-import {getChance} from '../../redux/calcSlice'
+import {getEnhance} from '../../redux/calcSlice'
 
 export const Jewelry = () => {
 
-  const state = useSelector((state: RootState) => state.calc.value)
+  const state = useSelector((state: RootState) => state.calc)
   const dispatch = useDispatch()
 
   const onSubmit = (value: InputValueType) => {
-    const chance = calculateAcc(value)
-    dispatch(getChance(chance))
+    const {chance, rawProfit, noPremProfit, premProfit} = calculateAcc(value)
+    dispatch(getEnhance({chance, rawProfit, noPremProfit, premProfit}))
   }
 
   return (
@@ -70,7 +70,7 @@ export const Jewelry = () => {
                       component={Input}
                       disabled={false}
                       autoFocus
-                      defaultValue={state}
+                      defaultValue={state.chance}
                     />
                   </InputWrapper>
                   <Button text="CLICK" customType="Primary" />
@@ -80,8 +80,10 @@ export const Jewelry = () => {
           />
         </Block>
         <Block>
-          <div>SUCCESS: {state} %</div><br />
-          <div>PROFIT: 0</div>
+          <div>SUCCESS: {state.chance} %</div><br />
+          <div>RAW: {state.rawProfit} $</div><br />
+          <div>NO PREM: {state.noPremProfit} $</div><br />
+          <div>PREM: {state.premProfit} $</div><br />
         </Block>
       </BlocksWrapper>
     </Container>
