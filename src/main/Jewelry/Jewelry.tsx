@@ -18,8 +18,8 @@ export const Jewelry = () => {
   const dispatch = useDispatch()
 
   const onSubmit = (value: InputValueType) => {
-    const {chance, profit} = calculateAcc(value)
-    dispatch(getEnhance({chance, profit}))
+    const {chance, rawProfit, noPremProfit, premProfit} = calculateAcc(value)
+    dispatch(getEnhance({chance, rawProfit, noPremProfit, premProfit}))
   }
 
   return (
@@ -81,7 +81,9 @@ export const Jewelry = () => {
         </Block>
         <Block>
           <div>SUCCESS: {state.chance} %</div><br />
-          <div>PROFIT: 0</div>
+          <div>RAW: {state.rawProfit} $</div><br />
+          <div>NO PREM: {state.noPremProfit} $</div><br />
+          <div>PREM: {state.premProfit} $</div><br />
         </Block>
       </BlocksWrapper>
     </Container>

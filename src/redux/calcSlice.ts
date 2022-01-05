@@ -3,12 +3,16 @@ import {EMPTY_STRING} from '../constants'
 
 export type EnhancedType = {
   chance: string
-  profit: string
+  rawProfit: string
+  noPremProfit: string
+  premProfit: string
 }
 
 const initialState: EnhancedType = {
   chance: EMPTY_STRING,
-  profit: EMPTY_STRING,
+  rawProfit: EMPTY_STRING,
+  noPremProfit: EMPTY_STRING,
+  premProfit: EMPTY_STRING,
 }
 
 export const calcSlice = createSlice({
@@ -19,7 +23,9 @@ export const calcSlice = createSlice({
       state = {
         ...state,
         chance: action.payload.chance,
-        profit: action.payload.profit,
+        rawProfit: action.payload.rawProfit,
+        noPremProfit: action.payload.noPremProfit,
+        premProfit: action.payload.premProfit,
       }
       return state
     },

@@ -12,8 +12,12 @@ export const calculateAcc = (value: InputValueType) => {
 
   const accObj = gradeResolver(enhanceGrade)
   const chance = chanceResolver(accObj!, enhanceGrade, lucks)!.toFixed(2)
-  const profit = profitResolver(commonItemPrice, startItemPrice, enhancedItemPrice, chance)
+  const {
+    rawProfit,
+    noPremProfit,
+    premProfit,
+  } = profitResolver(commonItemPrice, startItemPrice, enhancedItemPrice, chance)
 
-  return {chance, profit}
+  return {chance, rawProfit, noPremProfit, premProfit}
 
 }
