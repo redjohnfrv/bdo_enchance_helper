@@ -1,25 +1,25 @@
 import {createSlice} from '@reduxjs/toolkit'
-import {EMPTY_STRING} from '../constants'
+import {EMPTY_STRING} from '../../constants'
 
-export type EnhancedType = {
+export type EnhancedJewType = {
   chance: string
   rawProfit: string
   noPremProfit: string
   premProfit: string
 }
 
-const initialState: EnhancedType = {
+const initialState: EnhancedJewType = {
   chance: EMPTY_STRING,
   rawProfit: EMPTY_STRING,
   noPremProfit: EMPTY_STRING,
   premProfit: EMPTY_STRING,
 }
 
-export const calcSlice = createSlice({
-  name: 'calc',
+export const jewSlice = createSlice({
+  name: 'jew',
   initialState,
   reducers: {
-    getEnhance: (state, action) => {
+    getJewState: (state, action) => {
       state = {
         ...state,
         chance: action.payload.chance,
@@ -29,9 +29,13 @@ export const calcSlice = createSlice({
       }
       return state
     },
+    removeJewState: (state) => {
+      state = {...initialState}
+      return state
+    }
   },
 })
 
-const {actions, reducer} = calcSlice
-export const {getEnhance} = actions
+const {actions, reducer} = jewSlice
+export const {getJewState, removeJewState} = actions
 export default reducer

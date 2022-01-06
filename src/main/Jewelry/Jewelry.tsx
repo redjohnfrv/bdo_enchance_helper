@@ -1,6 +1,5 @@
 import React from 'react'
 import styled from 'styled-components'
-import {RootState} from '../../redux/store'
 import {InputValueType} from '../../dto/types'
 import {DASH_STRING} from '../../constants'
 import {Container, Divider, Block} from '../../ui'
@@ -10,16 +9,27 @@ import {Button} from '../../components/Button'
 import {Options} from '../../components/Options'
 import {calculateAcc} from '../../helpers'
 import {useDispatch, useSelector} from 'react-redux'
-import {getEnhance} from '../../redux/calcSlice'
+import {getJewState, removeJewState} from '../../redux/jewerly/jewSlice'
+import {selectJewState} from '../../redux/jewerly/selector'
 
 export const Jewelry = () => {
 
-  const state = useSelector((state: RootState) => state.calc)
+  const state = useSelector(selectJewState)
+  console.log('state: ', state)
   const dispatch = useDispatch()
 
-  const onSubmit = (value: InputValueType) => {
+  const onSubmit = async (value: InputValueType) => {
     const {chance, rawProfit, noPremProfit, premProfit} = calculateAcc(value)
-    dispatch(getEnhance({chance, rawProfit, noPremProfit, premProfit}))
+    await dispatch(removeJewState())
+    dispatch
+    (getJewState
+      ({
+        chance,
+        rawProfit,
+        noPremProfit,
+        premProfit
+      })
+    )
   }
 
   return (
@@ -73,7 +83,7 @@ export const Jewelry = () => {
                       defaultValue={state.chance}
                     />
                   </InputWrapper>
-                  <Button text="CLICK" customType="Primary" />
+                  <Button text="CALCULATE" customType="Primary" />
                 </Wrapper>
               </form>
             )}
