@@ -4,7 +4,7 @@ import storage from 'redux-persist/lib/storage'
 import {rootReducer} from './rootReducer'
 
 const persistConfig = {
-  key: 'root',
+  key: 'bdo_enhance',
   storage,
 }
 const reducerPersist = persistReducer(persistConfig, rootReducer)
