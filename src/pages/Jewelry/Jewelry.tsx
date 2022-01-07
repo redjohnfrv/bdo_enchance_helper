@@ -1,7 +1,8 @@
-import React from 'react'
+import React, {useState} from 'react'
 import styled from 'styled-components'
 import {InputValueType} from '../../dto/types'
 import {DASH_STRING} from '../../constants'
+import {jewInputValues} from '../../dto/inputValuesObj'
 import {Container, Divider, Block} from '../../ui'
 import {Field, Form} from 'react-final-form'
 import {Input} from '../../components/Input'
@@ -15,21 +16,22 @@ import {selectJewState} from '../../redux/jewerly/selector'
 export const Jewelry = () => {
 
   const state = useSelector(selectJewState)
-  console.log('state: ', state)
   const dispatch = useDispatch()
+  const [inputValues, setInputValues] = useState<InputValueType>(jewInputValues)
 
   const onSubmit = async (value: InputValueType) => {
     const {chance, rawProfit, noPremProfit, premProfit} = calculateAcc(value)
     await dispatch(removeJewState())
-    dispatch
-    (getJewState
-      ({
-        chance,
-        rawProfit,
-        noPremProfit,
-        premProfit
-      })
+    dispatch(getJewState(
+      {
+          chance,
+          rawProfit,
+          noPremProfit,
+          premProfit
+        }
+      )
     )
+    setInputValues({...value})
   }
 
   return (
@@ -90,6 +92,14 @@ export const Jewelry = () => {
           />
         </Block>
         <Block>
+          <div>
+            <h2>prev:</h2><br />
+            <span>item price: {inputValues.commonItemPrice}</span><br />
+            <span>item start price: {inputValues.startItemPrice}</span><br />
+            <span>item success price: {inputValues.enhancedItemPrice}</span><br />
+            <span>lucks: {inputValues.lucks}</span><br />
+            <span>grade success: {inputValues.enhanceGrade}</span>
+          </div><br />
           <div>SUCCESS: {state.chance} %</div><br />
           <div>RAW: {state.rawProfit} $</div><br />
           <div>NO PREM: {state.noPremProfit} $</div><br />

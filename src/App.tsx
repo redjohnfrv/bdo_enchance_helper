@@ -1,6 +1,6 @@
 import React from 'react'
 import {BrowserRouter} from 'react-router-dom'
-import {Navigator} from './main'
+import {Navigator} from './pages'
 
 function App() {
   return (
