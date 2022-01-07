@@ -1,14 +1,13 @@
-import React, {useState} from 'react'
+import React from 'react'
 import styled from 'styled-components'
 import {InputValueType} from '../../dto/types'
 import {DASH_STRING} from '../../constants'
-import {jewInputValues} from '../../dto/inputValuesObj'
 import {Container, Divider, Block} from '../../ui'
 import {Field, Form} from 'react-final-form'
 import {Input} from '../../components/Input'
 import {Button} from '../../components/Button'
 import {Options} from '../../components/Options'
-import {calculateAcc} from '../../helpers'
+import {calculateJew} from '../../helpers'
 import {useDispatch, useSelector} from 'react-redux'
 import {getJewState, removeJewState} from '../../redux/jewerly/jewSlice'
 import {selectJewState} from '../../redux/jewerly/selector'
@@ -17,22 +16,24 @@ export const Jewelry = () => {
 
   const state = useSelector(selectJewState)
   const dispatch = useDispatch()
-  const [inputValues, setInputValues] = useState<InputValueType>(jewInputValues)
 
-  const onSubmit = async (value: InputValueType) => {
-    const {chance, rawProfit, noPremProfit, premProfit} = calculateAcc(value)
+  const onSubmit = async (inputValue: InputValueType) => {
+    console.log('inputValue: ', inputValue)
+    const {chance, rawProfit, noPremProfit, premProfit, value} = calculateJew(inputValue)
     await dispatch(removeJewState())
     dispatch(getJewState(
       {
           chance,
           rawProfit,
           noPremProfit,
-          premProfit
+          premProfit,
+          value,
         }
       )
     )
-    setInputValues({...value})
   }
+
+  console.log('state: ', state)
 
   return (
     <Container>
@@ -94,11 +95,11 @@ export const Jewelry = () => {
         <Block>
           <div>
             <h2>prev:</h2><br />
-            <span>item price: {inputValues.commonItemPrice}</span><br />
-            <span>item start price: {inputValues.startItemPrice}</span><br />
-            <span>item success price: {inputValues.enhancedItemPrice}</span><br />
-            <span>lucks: {inputValues.lucks}</span><br />
-            <span>grade success: {inputValues.enhanceGrade}</span>
+            <span>item price: {state.value.commonItemPrice}</span><br />
+            <span>item start price: {state.value.startItemPrice}</span><br />
+            <span>item success price: {state.value.enhancedItemPrice}</span><br />
+            <span>lucks: {state.value.lucks}</span><br />
+            <span>grade success: {state.value.enhanceGrade}</span>
           </div><br />
           <div>SUCCESS: {state.chance} %</div><br />
           <div>RAW: {state.rawProfit} $</div><br />

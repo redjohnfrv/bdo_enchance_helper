@@ -1,7 +1,7 @@
 import {InputValueType} from '../dto/types'
 import {chanceResolver, gradeResolver, profitResolver} from './'
 
-export const calculateAcc = (value: InputValueType) => {
+export const calculateJew= (value: InputValueType) => {
   const {
     commonItemPrice,
     enhanceGrade,
@@ -18,6 +18,6 @@ export const calculateAcc = (value: InputValueType) => {
     premProfit,
   } = profitResolver(commonItemPrice, startItemPrice, enhancedItemPrice, chance)
 
-  return {chance, rawProfit, noPremProfit, premProfit}
+  return {chance, rawProfit, noPremProfit, premProfit, value}
 
 }
