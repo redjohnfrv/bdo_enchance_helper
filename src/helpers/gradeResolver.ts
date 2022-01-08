@@ -1,4 +1,5 @@
 import {gradeI, gradeII, gradeIII, gradeIV, gradeV} from './gradesObj'
+import {initialGradeObj} from '../dto/initialGradeObj'
 
 export const gradeResolver = (grade: string) => {
   switch (grade) {
@@ -7,6 +8,6 @@ export const gradeResolver = (grade: string) => {
     case 'III': return gradeIII
     case 'IV': return gradeIV
     case 'V': return gradeV
-    default: return null
+    default: return initialGradeObj
   }
 }

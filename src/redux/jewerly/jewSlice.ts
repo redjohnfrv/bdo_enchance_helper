@@ -1,7 +1,7 @@
 import {createSlice} from '@reduxjs/toolkit'
-import {EMPTY_STRING} from '../../constants'
-import {InputValueType} from '../../dto/types'
+import {NULL} from '../../constants'
 import {jewInputValues} from '../../dto/inputValuesObj'
+import {InputValueType} from '../../dto/types'
 
 export type EnhancedJewType = {
   chance: string
@@ -12,10 +12,10 @@ export type EnhancedJewType = {
 }
 
 const initialState: EnhancedJewType = {
-  chance: EMPTY_STRING,
-  rawProfit: EMPTY_STRING,
-  noPremProfit: EMPTY_STRING,
-  premProfit: EMPTY_STRING,
+  chance: NULL,
+  rawProfit: NULL,
+  noPremProfit: NULL,
+  premProfit: NULL,
   value: jewInputValues,
 }
 

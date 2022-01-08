@@ -1,13 +1,14 @@
+import { NULL } from '../constants'
 import {InputValueType} from '../dto/types'
 import {chanceResolver, gradeResolver, profitResolver} from './'
 
-export const calculateJew= (value: InputValueType) => {
+export const calculateJew = (value: InputValueType) => {
   const {
-    commonItemPrice,
-    enhanceGrade,
-    enhancedItemPrice,
-    startItemPrice,
-    lucks,
+    commonItemPrice = NULL,
+    enhanceGrade = NULL,
+    enhancedItemPrice = NULL,
+    startItemPrice = NULL,
+    lucks = NULL,
   } = value
 
   const accObj = gradeResolver(enhanceGrade)

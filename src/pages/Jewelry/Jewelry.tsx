@@ -18,7 +18,6 @@ export const Jewelry = () => {
   const dispatch = useDispatch()
 
   const onSubmit = async (inputValue: InputValueType) => {
-    console.log('inputValue: ', inputValue)
     const {chance, rawProfit, noPremProfit, premProfit, value} = calculateJew(inputValue)
     await dispatch(removeJewState())
     dispatch(getJewState(
@@ -32,8 +31,6 @@ export const Jewelry = () => {
       )
     )
   }
-
-  console.log('state: ', state)
 
   return (
     <Container>
