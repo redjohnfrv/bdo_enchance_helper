@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState} from 'react'
 import styled from 'styled-components'
 import {InputValueType} from '../../dto/types'
 import {DASH_STRING} from '../../constants'
@@ -7,7 +7,7 @@ import {Field, Form} from 'react-final-form'
 import {Input} from '../../components/Input'
 import {Button} from '../../components/Button'
 import {Options} from '../../components/Options'
-import {calculateJew} from '../../helpers'
+import {calculateJew, composeValidators, validators} from '../../helpers'
 import {useDispatch, useSelector} from 'react-redux'
 import {getJewState, removeJewState} from '../../redux/jewerly/jewSlice'
 import {selectJewState} from '../../redux/jewerly/selector'
@@ -16,6 +16,9 @@ export const Jewelry = () => {
 
   const state = useSelector(selectJewState)
   const dispatch = useDispatch()
+
+  // TODO add disable for submit button
+  const [isDisable, setIsDisable] = useState(false)
 
   const onSubmit = async (inputValue: InputValueType) => {
     const {chance, rawProfit, noPremProfit, premProfit, value} = calculateJew(inputValue)
@@ -46,22 +49,22 @@ export const Jewelry = () => {
                       name="commonItemPrice"
                       label="Zero enhanced item price:"
                       component={Input}
-                      disabled={false}
                       autoFocus
+                      validate={composeValidators(validators.required, validators.validInput)}
                     />
                     <Field
                       name="startItemPrice"
                       label="Price now:"
                       component={Input}
-                      disabled={false}
                       autoFocus
+                      validate={composeValidators(validators.required, validators.validInput)}
                     />
                     <Field
                       name="enhancedItemPrice"
                       label="Price after successfully enhance:"
                       component={Input}
-                      disabled={false}
                       autoFocus
+                      validate={composeValidators(validators.required, validators.validInput)}
                     />
                     <Divider />
                     <CheckboxWrapper>
@@ -78,9 +81,9 @@ export const Jewelry = () => {
                       label="Luck value:"
                       width="25"
                       component={Input}
-                      disabled={false}
                       autoFocus
                       defaultValue={state.chance}
+                      validate={composeValidators(validators.required, validators.validInput)}
                     />
                   </InputWrapper>
                   <Button text="CALCULATE" customType="Primary" />
