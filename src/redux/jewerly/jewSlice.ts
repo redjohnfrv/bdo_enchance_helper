@@ -1,18 +1,22 @@
 import {createSlice} from '@reduxjs/toolkit'
-import {EMPTY_STRING} from '../../constants'
+import {NULL} from '../../constants'
+import {jewInputValues} from '../../dto/inputValuesObj'
+import {InputValueType} from '../../dto/types'
 
 export type EnhancedJewType = {
   chance: string
   rawProfit: string
   noPremProfit: string
   premProfit: string
+  value: InputValueType
 }
 
 const initialState: EnhancedJewType = {
-  chance: EMPTY_STRING,
-  rawProfit: EMPTY_STRING,
-  noPremProfit: EMPTY_STRING,
-  premProfit: EMPTY_STRING,
+  chance: NULL,
+  rawProfit: NULL,
+  noPremProfit: NULL,
+  premProfit: NULL,
+  value: jewInputValues,
 }
 
 export const jewSlice = createSlice({
@@ -20,14 +24,7 @@ export const jewSlice = createSlice({
   initialState,
   reducers: {
     getJewState: (state, action) => {
-      state = {
-        ...state,
-        chance: action.payload.chance,
-        rawProfit: action.payload.rawProfit,
-        noPremProfit: action.payload.noPremProfit,
-        premProfit: action.payload.premProfit,
-      }
-      return state
+      return {...action.payload}
     },
     removeJewState: (state) => {
       state = {...initialState}

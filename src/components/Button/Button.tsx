@@ -1,23 +1,24 @@
 import React from 'react'
 import styled from 'styled-components'
-import { variables } from '../../assets'
+import {variables} from '../../assets'
 
 type CustomButtonType = 'Primary' | 'Warning'
 
 type Props = {
   text: string
   customType?: CustomButtonType
+  disabled?: boolean
 }
 
-export const Button = ({text, customType='Primary'}: Props) => {
+export const Button = ({text, customType='Primary', disabled}: Props) => {
   return (
-    <Wrapper type="submit" customType={customType}>
+    <Wrapper type="submit" customType={customType} disabled={disabled}>
       {text}
     </Wrapper>
   )
 }
 
-const Wrapper = styled.button<{customType: CustomButtonType}>`
+const Wrapper = styled.button<{customType: CustomButtonType, disabled?: boolean}>`
   width: max-content;
   height: 36px;
   line-height: 36px;
@@ -32,4 +33,5 @@ const Wrapper = styled.button<{customType: CustomButtonType}>`
     ? variables.colors.warning
     : 'none'
   };
+  opacity: ${props => props.disabled ? '.5' : '1'};
 `
