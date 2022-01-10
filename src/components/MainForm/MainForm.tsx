@@ -6,13 +6,13 @@ import {Divider} from '../../ui'
 import {Options} from '../Options'
 import {DASH_STRING} from '../../constants'
 import {Button} from '../Button'
-import {InputValueType} from '../../dto/types'
-import {EnhancedJewType, getJewState, removeJewState} from '../../redux/jewerly/jewSlice'
+import {EnhancedType, InputValueType} from '../../dto/types'
+import {getJewState, removeJewState} from '../../redux/jewerly/jewSlice'
 import {useDispatch} from 'react-redux'
 import styled from 'styled-components'
 
 type Props = {
-  state: EnhancedJewType
+  state: EnhancedType
 }
 
 export const MainForm = ({state}: Props) => {

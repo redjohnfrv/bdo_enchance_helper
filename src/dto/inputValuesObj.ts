@@ -1,7 +1,7 @@
 import {InputValueType} from './types'
 import {NULL} from '../constants'
 
-export const jewInputValues: InputValueType = {
+export const commonInputValues: InputValueType = {
   commonItemPrice: NULL,
   enhanceGrade: NULL,
   enhancedItemPrice: NULL,

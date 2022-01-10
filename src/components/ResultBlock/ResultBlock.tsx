@@ -1,10 +1,10 @@
 import React from 'react'
-import {formatter} from '../../helpers'
 import styled from 'styled-components'
-import {EnhancedJewType} from '../../redux/jewerly/jewSlice'
+import {formatter} from '../../helpers'
+import {EnhancedType} from '../../dto/types'
 
 type Props = {
-  state: EnhancedJewType
+  state: EnhancedType
 }
 
 export const ResultBlock = ({state}: Props) => {

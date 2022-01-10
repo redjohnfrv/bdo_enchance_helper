@@ -5,3 +5,11 @@ export type InputValueType = {
   startItemPrice: string
   lucks: string
 }
+
+export type EnhancedType = {
+  chance: string
+  rawProfit: string
+  noPremProfit: string
+  premProfit: string
+  value: InputValueType
+}

@@ -11,20 +11,20 @@ const initialState: EnhancedType = {
   value: commonInputValues,
 }
 
-export const jewSlice = createSlice({
-  name: 'jew',
+export const stuffSlice = createSlice({
+  name: 'stuff',
   initialState,
   reducers: {
-    getJewState: (state, action) => {
+    getStuffState: (state, action) => {
       return {...action.payload}
     },
-    removeJewState: (state) => {
+    removeStuffState: (state) => {
       state = {...initialState}
       return state
     }
   },
 })
 
-const {actions, reducer} = jewSlice
-export const {getJewState, removeJewState} = actions
+const {actions, reducer} = stuffSlice
+export const {getStuffState, removeStuffState} = actions
 export default reducer
