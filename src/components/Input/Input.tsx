@@ -8,7 +8,7 @@ type InputFiledProps = {
   defaultValue: string
   placeholder?: string
   width?: string
-  mask: boolean
+  mask: 'true' | 'false'
 }
 
 type Props = FieldRenderProps<string> & InputFiledProps
@@ -20,7 +20,7 @@ export const Input = (
    label,
    width = '150',
    defaultValue,
-   mask = false,
+   mask = 'true',
   }: Props) => {
   return (
     <Wrapper>
@@ -31,7 +31,7 @@ export const Input = (
           placeholder={placeholder}
           value={defaultValue}
         />
-        {mask
+        {mask === 'true'
           && <MaskedInput>
             <span>.</span>
             <span>.</span>
@@ -54,7 +54,7 @@ const Wrapper = styled.div`
     width: 250px;
   }
 `
-const InputWrapper = styled.div<{width: string, mask: boolean}>`
+const InputWrapper = styled.div<{width: string, mask: 'true' | 'false'}>`
   position: relative;
   font-variant-numeric: tabular-nums;
 
@@ -64,7 +64,7 @@ const InputWrapper = styled.div<{width: string, mask: boolean}>`
     width: ${props => props.width + `px;`};
     font-size: 18px;
     text-align: right;
-    letter-spacing: ${props => !props.mask ? '' : '1.3px'};
+    letter-spacing: ${props => props.mask === 'true' ? '1.3px' : ''};
   }
 `
 const ErrorLabel = styled.span`
