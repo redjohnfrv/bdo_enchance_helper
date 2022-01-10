@@ -7,7 +7,7 @@ import {Field, Form} from 'react-final-form'
 import {Input} from '../../components/Input'
 import {Button} from '../../components/Button'
 import {Options} from '../../components/Options'
-import {calculateJew, validation} from '../../helpers'
+import {calculateJew, formatter, validation} from '../../helpers'
 import {useDispatch, useSelector} from 'react-redux'
 import {getJewState, removeJewState} from '../../redux/jewerly/jewSlice'
 import {selectJewState} from '../../redux/jewerly/selector'
@@ -95,16 +95,16 @@ export const Jewelry = () => {
         <Block>
           <div>
             <h2>prev:</h2><br />
-            <span>item price: {state.value.commonItemPrice}</span><br />
-            <span>item start price: {state.value.startItemPrice}</span><br />
-            <span>item success price: {state.value.enhancedItemPrice}</span><br />
+            <span>item price: {formatter(state.value.commonItemPrice)} $</span><br />
+            <span>item start price: {formatter(state.value.startItemPrice)} $</span><br />
+            <span>item success price: {formatter(state.value.enhancedItemPrice)} $</span><br />
             <span>lucks: {state.value.lucks}</span><br />
             <span>grade success: {state.value.enhanceGrade}</span>
           </div><br />
           <div>SUCCESS: {state.chance} %</div><br />
-          <div>RAW: {state.rawProfit} $</div><br />
-          <div>NO PREM: {state.noPremProfit} $</div><br />
-          <div>PREM: {state.premProfit} $</div><br />
+          <div>RAW: {formatter(state.rawProfit)} $</div><br />
+          <div>NO PREM: {formatter(state.noPremProfit)} $</div><br />
+          <div>PREM: {formatter(state.premProfit)} $</div><br />
         </Block>
       </BlocksWrapper>
     </Container>
