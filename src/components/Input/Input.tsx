@@ -4,16 +4,22 @@ import {variables} from '../../assets'
 import {FieldRenderProps} from 'react-final-form'
 
 type InputFiledProps = {
-  placeholder?: string
   label: string
-  width?: string
   defaultValue: string
+  placeholder?: string
+  width?: string
 }
 
 type Props = FieldRenderProps<string> & InputFiledProps
 
-export const Input = ({input, placeholder, meta, label, width='150', defaultValue}: Props) => {
-
+export const Input = (
+  {input,
+   placeholder,
+   meta,
+   label,
+   width='150',
+    defaultValue,
+  }: Props) => {
   return (
     <Wrapper>
       {label && <label>{label}</label>}

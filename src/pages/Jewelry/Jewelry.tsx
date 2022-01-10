@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React from 'react'
 import styled from 'styled-components'
 import {InputValueType} from '../../dto/types'
 import {DASH_STRING} from '../../constants'
@@ -16,9 +16,6 @@ export const Jewelry = () => {
 
   const state = useSelector(selectJewState)
   const dispatch = useDispatch()
-
-  // TODO add disable for submit button
-  const [isDisable, setIsDisable] = useState(false)
 
   const onSubmit = async (inputValue: InputValueType) => {
     const {chance, rawProfit, noPremProfit, premProfit, value} = calculateJew(inputValue)
@@ -41,7 +38,7 @@ export const Jewelry = () => {
         <Block>
           <Form
             onSubmit={onSubmit}
-            render={({handleSubmit}) => (
+            render={({handleSubmit, invalid}) => (
               <form onSubmit={handleSubmit}>
                 <Wrapper>
                   <InputWrapper>
@@ -82,7 +79,11 @@ export const Jewelry = () => {
                       validate={validation.validInput}
                     />
                   </InputWrapper>
-                  <Button text="CALCULATE" customType="Primary" />
+                  <Button
+                    text="CALCULATE"
+                    customType="Primary"
+                    disabled={invalid}
+                  />
                 </Wrapper>
               </form>
             )}
