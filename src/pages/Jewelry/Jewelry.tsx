@@ -80,6 +80,7 @@ export const Jewelry = () => {
                       component={Input}
                       defaultValue={state.chance}
                       validate={validation.validInput}
+                      mask={false}
                     />
                   </InputWrapper>
                   <Button

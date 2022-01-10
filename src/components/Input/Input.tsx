@@ -8,7 +8,7 @@ type InputFiledProps = {
   defaultValue: string
   placeholder?: string
   width?: string
-  mask?: boolean
+  mask: boolean
 }
 
 type Props = FieldRenderProps<string> & InputFiledProps

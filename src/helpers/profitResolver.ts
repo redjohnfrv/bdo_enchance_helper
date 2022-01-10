@@ -10,8 +10,8 @@ export const profitResolver = (
   const ch = Number(chance)/100
 
   const rawProfit = ((ap * ch) - (bp * (1 - ch))) - dp
-  const noPremProfit = rawProfit * .65
-  const premProfit = rawProfit * .845
+  const noPremProfit = rawProfit > 0 ? rawProfit * .65 : rawProfit + (rawProfit * .35)
+  const premProfit = rawProfit > 0 ? rawProfit * .845 : rawProfit + (rawProfit * .155)
 
   return {rawProfit, noPremProfit, premProfit}
 }
