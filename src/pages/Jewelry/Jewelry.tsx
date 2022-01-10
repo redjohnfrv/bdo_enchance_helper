@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React from 'react'
 import styled from 'styled-components'
 import {InputValueType} from '../../dto/types'
 import {DASH_STRING} from '../../constants'
@@ -7,7 +7,7 @@ import {Field, Form} from 'react-final-form'
 import {Input} from '../../components/Input'
 import {Button} from '../../components/Button'
 import {Options} from '../../components/Options'
-import {calculateJew, composeValidators, validators} from '../../helpers'
+import {calculateJew, formatter, validation} from '../../helpers'
 import {useDispatch, useSelector} from 'react-redux'
 import {getJewState, removeJewState} from '../../redux/jewerly/jewSlice'
 import {selectJewState} from '../../redux/jewerly/selector'
@@ -16,9 +16,6 @@ export const Jewelry = () => {
 
   const state = useSelector(selectJewState)
   const dispatch = useDispatch()
-
-  // TODO add disable for submit button
-  const [isDisable, setIsDisable] = useState(false)
 
   const onSubmit = async (inputValue: InputValueType) => {
     const {chance, rawProfit, noPremProfit, premProfit, value} = calculateJew(inputValue)
@@ -41,7 +38,7 @@ export const Jewelry = () => {
         <Block>
           <Form
             onSubmit={onSubmit}
-            render={({handleSubmit}) => (
+            render={({handleSubmit, invalid}) => (
               <form onSubmit={handleSubmit}>
                 <Wrapper>
                   <InputWrapper>
@@ -49,22 +46,22 @@ export const Jewelry = () => {
                       name="commonItemPrice"
                       label="Zero enhanced item price:"
                       component={Input}
-                      autoFocus
-                      validate={composeValidators(validators.required, validators.validInput)}
+                      validate={validation.validInput}
+                      mask="true"
                     />
                     <Field
                       name="startItemPrice"
                       label="Price now:"
                       component={Input}
-                      autoFocus
-                      validate={composeValidators(validators.required, validators.validInput)}
+                      validate={validation.validInput}
+                      mask="true"
                     />
                     <Field
                       name="enhancedItemPrice"
                       label="Price after successfully enhance:"
                       component={Input}
-                      autoFocus
-                      validate={composeValidators(validators.required, validators.validInput)}
+                      validate={validation.validInput}
+                      mask="true"
                     />
                     <Divider />
                     <CheckboxWrapper>
@@ -79,14 +76,18 @@ export const Jewelry = () => {
                     <Field
                       name="lucks"
                       label="Luck value:"
-                      width="25"
+                      width="32"
                       component={Input}
-                      autoFocus
                       defaultValue={state.chance}
-                      validate={composeValidators(validators.required, validators.validInput)}
+                      validate={validation.validInput}
+                      mask="false"
                     />
                   </InputWrapper>
-                  <Button text="CALCULATE" customType="Primary" />
+                  <Button
+                    text="CALCULATE"
+                    customType="Primary"
+                    disabled={invalid}
+                  />
                 </Wrapper>
               </form>
             )}
@@ -95,16 +96,16 @@ export const Jewelry = () => {
         <Block>
           <div>
             <h2>prev:</h2><br />
-            <span>item price: {state.value.commonItemPrice}</span><br />
-            <span>item start price: {state.value.startItemPrice}</span><br />
-            <span>item success price: {state.value.enhancedItemPrice}</span><br />
+            <span>item price: {formatter(state.value.commonItemPrice)} $</span><br />
+            <span>item start price: {formatter(state.value.startItemPrice)} $</span><br />
+            <span>item success price: {formatter(state.value.enhancedItemPrice)} $</span><br />
             <span>lucks: {state.value.lucks}</span><br />
             <span>grade success: {state.value.enhanceGrade}</span>
           </div><br />
           <div>SUCCESS: {state.chance} %</div><br />
-          <div>RAW: {state.rawProfit} $</div><br />
-          <div>NO PREM: {state.noPremProfit} $</div><br />
-          <div>PREM: {state.premProfit} $</div><br />
+          <div>RAW: {formatter(state.rawProfit)} $</div><br />
+          <div>NO PREM: {formatter(state.noPremProfit)} $</div><br />
+          <div>PREM: {formatter(state.premProfit)} $</div><br />
         </Block>
       </BlocksWrapper>
     </Container>

@@ -1,5 +1,6 @@
 export * from './calculate'
+export * from './validation'
 export {chanceResolver} from './chanceResolver'
 export {gradeResolver} from './gradeResolver'
 export {profitResolver} from './profitResolver'
-export * from './validation'
+export {formatter} from './numericFormat'
