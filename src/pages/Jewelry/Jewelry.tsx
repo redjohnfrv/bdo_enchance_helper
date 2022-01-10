@@ -47,18 +47,21 @@ export const Jewelry = () => {
                       label="Zero enhanced item price:"
                       component={Input}
                       validate={validation.validInput}
+                      mask={true}
                     />
                     <Field
                       name="startItemPrice"
                       label="Price now:"
                       component={Input}
                       validate={validation.validInput}
+                      mask={true}
                     />
                     <Field
                       name="enhancedItemPrice"
                       label="Price after successfully enhance:"
                       component={Input}
                       validate={validation.validInput}
+                      mask={true}
                     />
                     <Divider />
                     <CheckboxWrapper>
@@ -73,7 +76,7 @@ export const Jewelry = () => {
                     <Field
                       name="lucks"
                       label="Luck value:"
-                      width="25"
+                      width="32"
                       component={Input}
                       defaultValue={state.chance}
                       validate={validation.validInput}
