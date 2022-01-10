@@ -7,7 +7,7 @@ import {Field, Form} from 'react-final-form'
 import {Input} from '../../components/Input'
 import {Button} from '../../components/Button'
 import {Options} from '../../components/Options'
-import {calculateJew, composeValidators, validators} from '../../helpers'
+import {calculateJew, validation} from '../../helpers'
 import {useDispatch, useSelector} from 'react-redux'
 import {getJewState, removeJewState} from '../../redux/jewerly/jewSlice'
 import {selectJewState} from '../../redux/jewerly/selector'
@@ -49,22 +49,19 @@ export const Jewelry = () => {
                       name="commonItemPrice"
                       label="Zero enhanced item price:"
                       component={Input}
-                      autoFocus
-                      validate={composeValidators(validators.required, validators.validInput)}
+                      validate={validation.validInput}
                     />
                     <Field
                       name="startItemPrice"
                       label="Price now:"
                       component={Input}
-                      autoFocus
-                      validate={composeValidators(validators.required, validators.validInput)}
+                      validate={validation.validInput}
                     />
                     <Field
                       name="enhancedItemPrice"
                       label="Price after successfully enhance:"
                       component={Input}
-                      autoFocus
-                      validate={composeValidators(validators.required, validators.validInput)}
+                      validate={validation.validInput}
                     />
                     <Divider />
                     <CheckboxWrapper>
@@ -81,9 +78,8 @@ export const Jewelry = () => {
                       label="Luck value:"
                       width="25"
                       component={Input}
-                      autoFocus
                       defaultValue={state.chance}
-                      validate={composeValidators(validators.required, validators.validInput)}
+                      validate={validation.validInput}
                     />
                   </InputWrapper>
                   <Button text="CALCULATE" customType="Primary" />

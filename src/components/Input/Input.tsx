@@ -23,7 +23,7 @@ export const Input = ({input, placeholder, meta, label, width='150', defaultValu
           placeholder={placeholder}
           value={defaultValue}
         />
-        {meta.error && <ErrorLabel>{meta.error}</ErrorLabel>}
+        {meta.error && meta.touched && <ErrorLabel>{meta.error}</ErrorLabel>}
       </InputWrapper>
     </Wrapper>
   )
