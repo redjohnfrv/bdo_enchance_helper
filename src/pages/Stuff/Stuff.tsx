@@ -14,7 +14,7 @@ export const Stuff = () => {
     <Container>
       <BlocksWrapper>
         <Block>
-          <MainForm state={state} />
+          <MainForm state={state} type="Stuff" />
         </Block>
         <Block>
           <ResultBlock state={state} />

@@ -14,7 +14,7 @@ export const Jewelry = () => {
     <Container>
       <BlocksWrapper>
         <Block>
-          <MainForm state={state} />
+          <MainForm state={state} type="Jewelry" />
         </Block>
         <Block>
           <ResultBlock state={state} />

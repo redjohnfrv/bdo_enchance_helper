@@ -1,37 +1,59 @@
 import React from 'react'
+import styled from 'styled-components'
 import {Field, Form} from 'react-final-form'
-import {Input} from '../Input'
-import {calculateJew, validation} from '../../helpers'
 import {Divider} from '../../ui'
 import {Options} from '../Options'
-import {DASH_STRING} from '../../constants'
+import {Input} from '../Input'
 import {Button} from '../Button'
+import {calculate, validation} from '../../helpers'
+import {DASH_STRING} from '../../constants'
 import {EnhancedType, InputValueType} from '../../dto/types'
 import {getJewState, removeJewState} from '../../redux/jewerly/jewSlice'
+import {removeStuffState, getStuffState } from '../../redux/stuff/stuffSlice'
 import {useDispatch} from 'react-redux'
-import styled from 'styled-components'
 
 type Props = {
   state: EnhancedType
+  type: 'Jewelry' | 'Stuff'
 }
 
-export const MainForm = ({state}: Props) => {
+export const MainForm = ({state, type}: Props) => {
 
   const dispatch = useDispatch()
 
   const onSubmit = async (inputValue: InputValueType) => {
-    const {chance, rawProfit, noPremProfit, premProfit, value} = calculateJew(inputValue)
-    await dispatch(removeJewState())
-    dispatch(getJewState(
-        {
-          chance,
-          rawProfit,
-          noPremProfit,
-          premProfit,
-          value,
-        }
-      )
-    )
+    const {chance, rawProfit, noPremProfit, premProfit, value} = calculate(inputValue, type)
+    switch (type) {
+      case 'Jewelry': {
+        await dispatch(removeJewState())
+        dispatch(getJewState(
+            {
+              chance,
+              rawProfit,
+              noPremProfit,
+              premProfit,
+              value,
+            }
+          )
+        )
+        break
+      }
+      case 'Stuff': {
+        await dispatch(removeStuffState())
+        dispatch(getStuffState(
+            {
+              chance,
+              rawProfit,
+              noPremProfit,
+              premProfit,
+              value,
+            }
+          )
+        )
+        break
+      }
+      default: return null
+    }
   }
 
   return (

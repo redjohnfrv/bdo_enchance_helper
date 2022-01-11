@@ -13,3 +13,20 @@ export type EnhancedType = {
   premProfit: string
   value: InputValueType
 }
+
+export type GradeObjType = {
+  min: number
+  max: number
+  cap: number | null
+  capChance: number | null
+  prevCapStep: number
+  afterCapStep: number
+}
+
+export type GradesObjType = {
+  I: GradeObjType,
+  II: GradeObjType,
+  III: GradeObjType,
+  IV: GradeObjType,
+  V: GradeObjType,
+}

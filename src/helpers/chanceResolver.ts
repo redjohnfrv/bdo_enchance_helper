@@ -1,6 +1,12 @@
-import {GradeObjType} from './gradesObj'
+import {GradeObjType} from "../dto/types"
 
-export const chanceResolver = (gradeObj: GradeObjType, enhanceGrade: string, lucks: string) => {
+
+export const chanceResolver = (
+  gradeObj: GradeObjType,
+  enhanceGrade: string,
+  lucks: string,
+  type: 'Jewelry' | 'Stuff'
+) => {
   const lucksToNum = Number(lucks)
   const min = gradeObj!.min!
   const max = gradeObj!.max!
@@ -11,10 +17,12 @@ export const chanceResolver = (gradeObj: GradeObjType, enhanceGrade: string, luc
 
   if (enhanceGrade === 'V' && lucksToNum * prevStep <= max) {
     return min + (lucksToNum * prevStep)
-
   } else if (enhanceGrade === 'V' && lucksToNum * prevStep > max) {
     return max
-
+  } else if (type === 'Stuff' && enhanceGrade === 'IV' && lucksToNum * prevStep <= max) {
+    return min + (lucksToNum * prevStep)
+  } else if (type === 'Stuff' && enhanceGrade === 'IV' && lucksToNum * prevStep > max) {
+    return max
   } else {
     //Return min chance
     if (lucksToNum <= 0) return min
