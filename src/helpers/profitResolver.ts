@@ -2,7 +2,9 @@ export const profitResolver = (
   defaultPrice: string,
   beforePrice: string,
   afterPrice: string,
-  chance: string) => {
+  chance: string,
+  type: 'Jewelry' | 'Stuff'
+  ) => {
 
   const dp = Number(defaultPrice)
   const bp = Number(beforePrice)
