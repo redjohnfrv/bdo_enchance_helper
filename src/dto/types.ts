@@ -30,3 +30,10 @@ export type GradesObjType = {
   IV: GradeObjType,
   V: GradeObjType,
 }
+
+export enum EGradesToNums {
+  'II' = .28,
+  'III' = .14,
+  'IV' = .18,
+  'V' = .4
+}

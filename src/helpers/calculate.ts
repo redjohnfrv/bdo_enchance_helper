@@ -1,4 +1,4 @@
-import { NULL } from '../constants'
+import {NULL} from '../constants'
 import {InputValueType} from '../dto/types'
 import {
   chanceResolver,
@@ -22,7 +22,14 @@ export const calculate = (value: InputValueType, type: 'Jewelry' | 'Stuff') => {
     rawProfit,
     noPremProfit,
     premProfit,
-  } = profitResolver(commonItemPrice, startItemPrice, enhancedItemPrice, chance)
+  } = profitResolver(
+    commonItemPrice,
+    startItemPrice,
+    enhancedItemPrice,
+    chance,
+    type,
+    enhanceGrade
+  )
 
   return {chance, rawProfit, noPremProfit, premProfit, value}
 
