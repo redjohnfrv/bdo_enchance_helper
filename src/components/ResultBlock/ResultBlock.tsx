@@ -5,14 +5,19 @@ import {EnhancedType} from '../../dto/types'
 
 type Props = {
   state: EnhancedType
+  type?: 'Jewelry' | 'Stuff'
 }
 
-export const ResultBlock = ({state}: Props) => {
+export const ResultBlock = ({state, type}: Props) => {
   return (
     <Wrapper>
       <div>
         <h2>prev:</h2><br />
-        <span>item price: {formatter(state.value.commonItemPrice)} $</span><br />
+        {type === 'Jewelry' &&
+          <>
+            <span>item price: {formatter(state.value.commonItemPrice)} $</span><br />
+          </>
+        }
         <span>item start price: {formatter(state.value.startItemPrice)} $</span><br />
         <span>item success price: {formatter(state.value.enhancedItemPrice)} $</span><br />
         <span>lucks: {state.value.lucks}</span><br />

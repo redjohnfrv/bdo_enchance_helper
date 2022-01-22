@@ -63,13 +63,13 @@ export const MainForm = ({state, type}: Props) => {
         <form onSubmit={handleSubmit}>
           <Wrapper>
             <InputWrapper>
-              <Field
+              {type === 'Jewelry' && <Field
                 name="commonItemPrice"
                 label="Zero enhanced item price:"
                 component={Input}
                 validate={validation.validInput}
                 mask="true"
-              />
+              />}
               <Field
                 name="startItemPrice"
                 label="Price now:"

@@ -17,7 +17,7 @@ export const Jewelry = () => {
           <MainForm state={state} type="Jewelry" />
         </Block>
         <Block>
-          <ResultBlock state={state} />
+          <ResultBlock state={state} type="Jewelry" />
         </Block>
       </BlocksWrapper>
     </Container>
