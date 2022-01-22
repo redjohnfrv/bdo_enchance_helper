@@ -1,10 +1,13 @@
 import React from 'react'
 import styled from 'styled-components'
+import {Label} from '../Label'
 import {variables} from '../../assets'
 import {FieldRenderProps} from 'react-final-form'
+import {EMPTY_STRING} from '../../constants'
 
 type InputFiledProps = {
   label: string
+  tooltip: string
   defaultValue: string
   placeholder?: string
   width?: string
@@ -18,13 +21,16 @@ export const Input = (
    placeholder,
    meta,
    label,
+   tooltip = EMPTY_STRING,
    width = '150',
    defaultValue,
    mask = 'true',
   }: Props) => {
   return (
     <Wrapper>
-      {label && <label>{label}</label>}
+      {label &&
+        <Label label={label} tooltip={tooltip} />
+      }
       <InputWrapper width={width} mask={mask}>
         <input
           {...input}
@@ -49,10 +55,6 @@ const Wrapper = styled.div`
   justify-content: flex-start;
   gap: 12px;
   margin: 18px 0;
-  
-  & label {
-    width: 250px;
-  }
 `
 const InputWrapper = styled.div<{width: string, mask: 'true' | 'false'}>`
   position: relative;

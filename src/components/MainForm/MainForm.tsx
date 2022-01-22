@@ -5,9 +5,14 @@ import {Divider} from '../../ui'
 import {Options} from '../Options'
 import {Input} from '../Input'
 import {Button} from '../Button'
+import {Label} from '../Label'
 import {calculate, validation} from '../../helpers'
 import {DASH_STRING} from '../../constants'
-import {EnhancedType, InputValueType} from '../../dto/types'
+import {
+  EnhancedType,
+  InputValueType,
+  ItemLabelType,
+} from '../../dto/types'
 import {getJewState, removeJewState} from '../../redux/jewerly/jewSlice'
 import {removeStuffState, getStuffState } from '../../redux/stuff/stuffSlice'
 import {useDispatch} from 'react-redux'
@@ -15,9 +20,10 @@ import {useDispatch} from 'react-redux'
 type Props = {
   state: EnhancedType
   type: 'Jewelry' | 'Stuff'
+  labels: ItemLabelType
 }
 
-export const MainForm = ({state, type}: Props) => {
+export const MainForm = ({state, type, labels}: Props) => {
 
   const dispatch = useDispatch()
 
@@ -63,30 +69,37 @@ export const MainForm = ({state, type}: Props) => {
         <form onSubmit={handleSubmit}>
           <Wrapper>
             <InputWrapper>
-              <Field
+              {type === 'Jewelry' && <Field
                 name="commonItemPrice"
-                label="Zero enhanced item price:"
+                label={labels.label1}
+                tooltip={labels.tooltip1}
                 component={Input}
                 validate={validation.validInput}
                 mask="true"
-              />
+              />}
               <Field
                 name="startItemPrice"
-                label="Price now:"
+                label={labels.label2}
+                tooltip={labels.tooltip2}
                 component={Input}
                 validate={validation.validInput}
                 mask="true"
               />
               <Field
                 name="enhancedItemPrice"
-                label="Price after successfully enhance:"
+                label={labels.label3}
+                tooltip={labels.tooltip3}
                 component={Input}
                 validate={validation.validInput}
                 mask="true"
               />
               <Divider />
               <CheckboxWrapper>
-                <label>Attempt to get grade: </label>
+                <Label
+                  label={labels.label4}
+                  tooltip={labels.tooltip4}
+                  width="262px"
+                />
                 <Field
                   name="enhanceGrade"
                   component="select"
@@ -96,7 +109,8 @@ export const MainForm = ({state, type}: Props) => {
               </CheckboxWrapper>
               <Field
                 name="lucks"
-                label="Luck value:"
+                label={labels.label5}
+                tooltip={labels.tooltip5}
                 width="32"
                 component={Input}
                 defaultValue={state.chance}
@@ -125,8 +139,4 @@ const InputWrapper = styled.div`
 const CheckboxWrapper = styled.div`
   display: flex;
   align-items: center;
-  
-  & label {
-    width: 262px;
-  }
 `
