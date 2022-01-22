@@ -37,3 +37,21 @@ export enum EGradesToNums {
   'IV' = .18,
   'V' = .4
 }
+
+export type ItemLabelType = {
+  label1: string
+  label2: string
+  label3: string
+  label4: string
+  label5: string
+  tooltip1: string
+  tooltip2: string
+  tooltip3: string
+  tooltip4: string
+  tooltip5: string
+}
+
+export type LabelsType = {
+  jewelry: ItemLabelType,
+  stuff: ItemLabelType,
+}

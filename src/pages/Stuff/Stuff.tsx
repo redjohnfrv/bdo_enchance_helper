@@ -5,6 +5,7 @@ import {MainForm} from '../../components/MainForm'
 import {ResultBlock} from '../../components/ResultBlock'
 import {useSelector} from 'react-redux'
 import {selectStuffState} from '../../redux/stuff/selector'
+import {labels} from '../../dto/labels'
 
 export const Stuff = () => {
 
@@ -14,7 +15,11 @@ export const Stuff = () => {
     <Container>
       <BlocksWrapper>
         <Block>
-          <MainForm state={state} type="Stuff" />
+          <MainForm
+            state={state}
+            labels={labels.stuff}
+            type="Stuff"
+          />
         </Block>
         <Block>
           <ResultBlock state={state} />

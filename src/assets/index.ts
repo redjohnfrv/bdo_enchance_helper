@@ -6,11 +6,13 @@ const colors = {
   primaryDark: '#3c626c',
   warning: '#ffcb12',
   danger: '#721a1a',
+  blue: '#1d47a6',
 }
 
 const size = {
   borderRadius: '6px',
-  menuSize: '16px',
+  menuSize: '18px',
+  textCommon: '16px',
 }
 
 export const variables = {

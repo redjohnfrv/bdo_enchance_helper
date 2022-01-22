@@ -5,6 +5,7 @@ import {MainForm} from '../../components/MainForm'
 import {useSelector} from 'react-redux'
 import {selectJewState} from '../../redux/jewerly/selector'
 import {ResultBlock} from '../../components/ResultBlock'
+import {labels} from '../../dto/labels'
 
 export const Jewelry = () => {
 
@@ -14,7 +15,11 @@ export const Jewelry = () => {
     <Container>
       <BlocksWrapper>
         <Block>
-          <MainForm state={state} type="Jewelry" />
+          <MainForm
+            state={state}
+            type="Jewelry"
+            labels={labels.jewelry}
+          />
         </Block>
         <Block>
           <ResultBlock state={state} type="Jewelry" />
