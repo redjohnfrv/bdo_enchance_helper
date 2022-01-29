@@ -13,6 +13,7 @@ const size = {
   borderRadius: '6px',
   menuSize: '18px',
   textCommon: '16px',
+  titleH2: '24px',
 }
 
 export const variables = {
