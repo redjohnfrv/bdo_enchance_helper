@@ -1,7 +1,9 @@
 import React from 'react'
 import styled from 'styled-components'
-import {formatter} from '../../helpers'
 import {EnhancedType} from '../../dto/types'
+import {Title} from '../Title'
+import {SpanLine} from '../SpanLine'
+import {Divider} from '../../ui'
 
 type Props = {
   state: EnhancedType
@@ -12,21 +14,22 @@ export const ResultBlock = ({state, type}: Props) => {
   return (
     <Wrapper>
       <div>
-        <h2>prev:</h2><br />
+        <Title title="Last sample" />
         {type === 'Jewelry' &&
           <>
-            <span>item price: {formatter(state.value.commonItemPrice)} $</span><br />
+            <SpanLine text='Consumable' value={state.value.commonItemPrice} symbol="$" />
           </>
         }
-        <span>item start price: {formatter(state.value.startItemPrice)} $</span><br />
-        <span>item success price: {formatter(state.value.enhancedItemPrice)} $</span><br />
-        <span>lucks: {state.value.lucks}</span><br />
-        <span>grade success: {state.value.enhanceGrade}</span>
-      </div><br />
-      <div>SUCCESS: {state.chance} %</div><br />
-      <div>RAW: {formatter(state.rawProfit)} $</div><br />
-      <div>NO PREM: {formatter(state.noPremProfit)} $</div><br />
-      <div>PREM: {formatter(state.premProfit)} $</div><br />
+        <SpanLine text='Default' value={state.value.startItemPrice} symbol="$" format={true} />
+        <SpanLine text='Success' value={state.value.enhancedItemPrice} symbol="$" format={true} />
+        <SpanLine text='Grade' value={state.value.enhanceGrade} />
+        <SpanLine text='Lucks' value={state.value.lucks} />
+      </div>
+      <Divider />
+      <SpanLine text='Success chance' value={state.chance} symbol="%" />
+      <SpanLine text='Raw value' value={state.rawProfit} symbol="$" format={true} />
+      <SpanLine text='No prem value' value={state.noPremProfit} symbol="$" format={true} />
+      <SpanLine text='Prem value' value={state.premProfit} symbol="$" format={true} />
     </Wrapper>
   )
 }
