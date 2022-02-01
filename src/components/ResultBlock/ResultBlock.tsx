@@ -2,17 +2,18 @@ import React from 'react'
 import styled from 'styled-components'
 import {EnhancedType} from '../../dto/types'
 import {Title} from '../Title'
-import {SpanLine} from '../SpanLine'
+import {SpanLine} from '../../ui/SpanLine'
 import {Divider} from '../../ui'
 
 type Props = {
   state: EnhancedType
   type?: 'Jewelry' | 'Stuff'
+  bg: string
 }
 
-export const ResultBlock = ({state, type}: Props) => {
+export const ResultBlock = ({state, type, bg}: Props) => {
   return (
-    <Wrapper>
+    <Wrapper bg={bg}>
       <div>
         <Title title="Last sample" />
         {type === 'Jewelry' &&
@@ -34,4 +35,6 @@ export const ResultBlock = ({state, type}: Props) => {
   )
 }
 
-const Wrapper = styled.div``
+const Wrapper = styled.div<{bg: string}>`
+  background: ${props => `url(${props.bg}) right / contain no-repeat`};
+`

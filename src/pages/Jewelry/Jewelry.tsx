@@ -6,10 +6,12 @@ import {useSelector} from 'react-redux'
 import {selectJewState} from '../../redux/jewerly/selector'
 import {ResultBlock} from '../../components/ResultBlock'
 import {labels} from '../../dto/labels'
+import {images} from '../../assets/images'
 
 export const Jewelry = () => {
 
   const state = useSelector(selectJewState)
+  const {bg_sc} = images
 
   return (
     <Container>
@@ -22,7 +24,7 @@ export const Jewelry = () => {
           />
         </Block>
         <Block>
-          <ResultBlock state={state} type="Jewelry" />
+          <ResultBlock state={state} type="Jewelry" bg={bg_sc} />
         </Block>
       </BlocksWrapper>
     </Container>
