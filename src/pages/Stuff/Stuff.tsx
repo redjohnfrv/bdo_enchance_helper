@@ -6,10 +6,12 @@ import {ResultBlock} from '../../components/ResultBlock'
 import {useSelector} from 'react-redux'
 import {selectStuffState} from '../../redux/stuff/selector'
 import {labels} from '../../dto/labels'
+import {images} from '../../assets/images'
 
 export const Stuff = () => {
 
   const state = useSelector(selectStuffState)
+  const {bg_sc} = images
 
   return (
     <Container>
@@ -22,7 +24,7 @@ export const Stuff = () => {
           />
         </Block>
         <Block>
-          <ResultBlock state={state} />
+          <ResultBlock state={state} bg={bg_sc} />
         </Block>
       </BlocksWrapper>
     </Container>
