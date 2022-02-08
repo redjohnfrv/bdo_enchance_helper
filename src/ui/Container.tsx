@@ -16,5 +16,5 @@ export const Container = ({children}: Props) => {
 const Wrapper = styled.div`
   max-width: 1200px;
   margin: 0 auto;
-  padding: 24px;
+  padding: 24px 24px 48px;
 `

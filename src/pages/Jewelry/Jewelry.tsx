@@ -23,8 +23,8 @@ export const Jewelry = () => {
             labels={labels.jewelry}
           />
         </Block>
-        <Block>
-          <ResultBlock state={state} type="Jewelry" bg={bg_sc} />
+        <Block bg={bg_sc}>
+          <ResultBlock state={state} type="Jewelry" />
         </Block>
       </BlocksWrapper>
     </Container>
