@@ -46,6 +46,7 @@ const Text = styled.div`
   top: 0;
   left: 28px;
   width: max-content;
+  max-width: 120px;
   padding: 5px;
   font-size: 14px;
   color: ${variables.colors.blue};

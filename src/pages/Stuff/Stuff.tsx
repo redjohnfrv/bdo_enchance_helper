@@ -23,8 +23,8 @@ export const Stuff = () => {
             type="Stuff"
           />
         </Block>
-        <Block>
-          <ResultBlock state={state} bg={bg_sc} />
+        <Block bg={bg_sc}>
+          <ResultBlock state={state} />
         </Block>
       </BlocksWrapper>
     </Container>

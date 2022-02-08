@@ -8,12 +8,11 @@ import {Divider} from '../../ui'
 type Props = {
   state: EnhancedType
   type?: 'Jewelry' | 'Stuff'
-  bg: string
 }
 
-export const ResultBlock = ({state, type, bg}: Props) => {
+export const ResultBlock = ({state, type}: Props) => {
   return (
-    <Wrapper bg={bg}>
+    <Wrapper>
       <div>
         <Title title="Last sample" />
         {type === 'Jewelry' &&
@@ -35,6 +34,5 @@ export const ResultBlock = ({state, type, bg}: Props) => {
   )
 }
 
-const Wrapper = styled.div<{bg: string}>`
-  background: ${props => `url(${props.bg}) right / contain no-repeat`};
+const Wrapper = styled.div`
 `
